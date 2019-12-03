@@ -3,5 +3,6 @@ module.exports = {
   mongodb: {
     user: "blakio",
     mongodbpw: "blakio"
-  }
+  },
+  connectionRoute: "./eps/index.js"
 }
