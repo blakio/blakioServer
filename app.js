@@ -1,12 +1,12 @@
 const express = require("express");
 const app = express();
 const config = require("./config");
-// const connection = require("./db/eps");
-// connection();
+var cors = require('cors')
 
 // eps routes
 const eps = require("./servers/eps/routes");
 
+app.use(cors())
 app.use(express.json({ extended: false }))
 app.use("/eps", eps);
 
