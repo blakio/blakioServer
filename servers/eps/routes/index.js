@@ -114,6 +114,8 @@ router.post('/clockIn/:id', (req, res) => {
   }).then(employee => {
     if(employee){
       employee.clockIn = moment.utc().valueOf();
+      employee.jobNumber = req.body.jobNumber;
+      employee.laborType = req.body.laborType;
       employee.save(err => {
         if(err) res.json({error: "error clocking in"})
         res.json({success: "successful punch"})
@@ -132,6 +134,8 @@ router.post('/toLunch/:id', (req, res) => {
   }).then(employee => {
     if(employee){
       employee.toLunch = moment.utc().valueOf();
+      employee.jobNumber = req.body.jobNumber;
+      employee.laborType = req.body.laborType;
       employee.save(err => {
         if(err) res.json({error: "error going to lunch"})
         res.json({success: "successful punch"})
@@ -150,6 +154,8 @@ router.post('/fromLunch/:id', (req, res) => {
   }).then(employee => {
     if(employee){
       employee.fromLunch = moment.utc().valueOf();
+      employee.jobNumber = req.body.jobNumber;
+      employee.laborType = req.body.laborType;
       employee.save(err => {
         if(err) res.json({error: "error coming from lunch"})
         res.json({success: "successful punch"})
@@ -169,6 +175,9 @@ router.post('/clockOut/:id', (req, res) => {
     if(employee){
 
       employee.clockOut = moment.utc().valueOf();
+      employee.jobNumber = req.body.jobNumber;
+      employee.laborType = req.body.laborType;
+
       employee.save((err, employee) => {
 
         if(err) res.json({error: "error clocking out"});
@@ -177,7 +186,7 @@ router.post('/clockOut/:id', (req, res) => {
           name: employee.name,
           jobTitle: employee.jobTitle,
           isContractor: employee.isContractor,
-          isTechnician: employee.isTechnician,
+          isTech: employee.isTech,
           isActive: employee.isActive,
           clockIn: employee.clockIn,
           toLunch: employee.toLunch,

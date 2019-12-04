@@ -2,24 +2,19 @@ const mongoose = require("./index");
 
 const EmployeeSchema = new mongoose.Schema({
   name: {
-    type: String,
-    required: true
+    type: String
   },
   jobTitle: {
-    type: String,
-    required: true
+    type: String
   },
   isContractor: {
-    type: Boolean,
-    required: true
+    type: Boolean
   },
-  isTechnician: {
-    type: Boolean,
-    required: true
+  isTech: {
+    type: Boolean
   },
   isActive: {
-    type: Boolean,
-    required: true
+    type: Boolean
   },
   jobNumber: String,
   laborType: String,

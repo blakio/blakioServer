@@ -17,7 +17,7 @@ const HistorySchema = new mongoose.Schema({
     type: Boolean,
     required: true
   },
-  isTechnician: {
+  isTech: {
     type: Boolean,
     required: true
   },
