@@ -313,4 +313,28 @@ router.post('/editEmployee/:id', (req, res) => {
   .catch(err => res.json(err));
 })
 
+router.post('/history', (req, res) => {
+  // start today
+  var start = moment(new Date(req.body.startDate)).startOf('day');
+  // end today
+  var end = moment(req.body.endDate).endOf('day');
+  History.find({
+    date: {
+      $gte: start,
+      $lt: end
+    }
+  }).then(history => {
+    if(history.length){
+      res.json(history)
+    } else {
+      res.json({
+        error: "no data for that date range"
+      })
+    }
+  })
+  .catch(err => res.json(err));
+})
+
+
+
 module.exports = router;
