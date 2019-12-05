@@ -294,4 +294,23 @@ router.post('/laborTypes/toggleActivation/:id', (req, res) => {
   })
 });
 
+router.post('/editEmployee/:id', (req, res) => {
+  Employee.findOne({
+    _id: req.params.id
+  }).then(employee => {
+    if(employee){
+      req.body.edits.map(data => {
+        employee[data.key] = data.value;
+      });
+      employee.save(err => {
+        if(err) res.json({error: "error editing employee"});
+        res.json({success: "employee edited"})
+      })
+    } else {
+      res.json({error: "employee does not exist"})
+    }
+  })
+  .catch(err => res.json(err));
+})
+
 module.exports = router;
