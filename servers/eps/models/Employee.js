@@ -18,10 +18,10 @@ const EmployeeSchema = new mongoose.Schema({
   },
   jobNumber: String,
   laborType: String,
-  clockIn: String,
-  clockOut: String,
-  toLunch: String,
-  fromLunch: String,
+  clockIn: Date,
+  clockOut: Date,
+  toLunch: Date,
+  fromLunch: Date,
   date: {
     type: Date,
     default: Date.now
