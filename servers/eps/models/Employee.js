@@ -22,6 +22,7 @@ const EmployeeSchema = new mongoose.Schema({
   clockOut: Date,
   toLunch: Date,
   fromLunch: Date,
+  travelTime: Number,
   date: {
     type: Date,
     default: Date.now

@@ -31,6 +31,9 @@ const HistorySchema = new mongoose.Schema({
   clockOut: Date,
   toLunch: Date,
   fromLunch: Date,
+  totalTime: Number,
+  overTime: Number,
+  travelTime: Number,
   date: {
     type: Date,
     default: Date.now

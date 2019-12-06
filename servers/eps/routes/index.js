@@ -180,6 +180,11 @@ router.post('/clockOut/:id', (req, res) => {
 
       employee.save((err, employee) => {
 
+        const seconds = moment(employee.clockOut).diff(employee.clockIn, "seconds");
+        const minutes = seconds/60;
+        const hours = minutes/60;
+        const workDayMaxhours = 8;
+
         if(err) res.json({error: "error clocking out"});
         let newHistory = new History({
           employeeId: employee._id,
@@ -191,9 +196,14 @@ router.post('/clockOut/:id', (req, res) => {
           clockIn: employee.clockIn,
           toLunch: employee.toLunch,
           fromLunch: employee.fromLunch,
-          clockOut: employee.clockOut
+          clockOut: employee.clockOut,
+          travelTime: employee.travelTime,
+          totalTime: hours + employee.travelTime,
+          overTime: (hours > workDayMaxhours) ? (hours - workDayMaxhours) : 0
         });
+
         newHistory.save((error, history) => {
+
           if(error) return res.json({ error });
 
           employee.clockIn = null;
