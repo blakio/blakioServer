@@ -39,10 +39,17 @@ module.exports = {
           if (error) {
             res.json({
               mailSent: false,
-              error
+              error,
+              meta: {
+                auth: {
+                  user: process.env[emailENV],
+                  pass: process.env[passwordENV]
+                },
+                mailOptions
+              }
             })
           } else {
-            res.json({mailSent: true})
+            res.json({ mailSent: true })
           }
         });
     }
