@@ -42,10 +42,8 @@ module.exports = {
               error,
               meta: {
                 auth: {
-                  user: process.env[emailENV],
-                  pass: process.env[passwordENV]
-                },
-                mailOptions
+                  user: process.env[emailENV]
+                }
               }
             })
           } else {
